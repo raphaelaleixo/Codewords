@@ -1,0 +1,54 @@
+
+.game-code {
+  background: $white;
+  color: $black;
+}
+
+.game-code__main {
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.game-code__text-area {
+  width:30%;
+  color: $black;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.game-code__title {
+  font-size:1.5em;
+}
+
+.game-code__code {
+  font-size:5em;
+  font-weight: 900;
+}
+
+.game-code__text {
+  line-height: 1.6;
+}
+
+.game-code__button {
+  font-size:1.5em;
+  margin:1em 0 0;
+  background:none;
+  border:none;
+  font-weight: 900;
+  text-transform:uppercase;
+  cursor:pointer;
+  .red & {
+    color: $red;
+  }
+
+  .blue & {
+    color: $blue;
+  }
+}
+
+.game-code__qr {
+  width:20%;
+  canvas {
+    width:100%;
+  }
+}

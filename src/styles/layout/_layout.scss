@@ -1,0 +1,40 @@
+.base {
+  height:100vh;
+  width:100vw;
+  overflow:hidden;
+  font-family: 'Montserrat', sans-serif;
+  text-transform:uppercase;
+  padding:1em;
+  color:$white;
+  @include responsive-font(1.2vw, 16px, 24px, 16px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @media screen and (min-width:960px) {
+    padding:3.375em;
+  }
+}
+
+.wrapper {
+  height:100%;
+  display:grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 9fr 1fr;
+  grid-gap: 1px 1px;
+  grid-template-areas: "header" "main" "footer";
+}
+
+.header {
+  grid-area: header;
+}
+
+.main {
+  grid-area: main;
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer {
+  grid-area: footer;
+}

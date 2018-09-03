@@ -1,0 +1,64 @@
+.codemaster-ui__keyboard {
+  display:flex;
+  flex-direction: column;
+  height:100%;
+  width:100%;
+  overflow:hidden;
+}
+
+.keyboard__keyrow {
+  display: flex;
+  margin:0 -1.75em;
+  justify-content: center;
+  margin:0.1em 0;
+  height:100%;
+}
+
+.keyboard__key {
+  -webkit-appearance: none;
+  border:none;
+  height: 100%;
+  width: calc(10% - 0.2rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 900;
+  margin:0.1rem;
+  font-size:1.125em;
+  color:#fff;
+  overflow: hidden;
+  flex:0 0 auto;
+  transition: background 0.5s ease-out, color 0.5s ease-out;
+  .red & {
+    background: $red;
+  }
+  .blue & {
+    background: $blue;
+  }
+  .keyboard_disabled & {
+    background: $black; 
+    color: $gray;
+  }
+}
+
+.keyboard__key_delete {
+  margin-left:1em;
+  background:none !important;
+  svg {
+      transform: scale(1.2);
+  }
+}
+
+.delete-key-icon {
+  transition: fill 0.5s ease-out;
+  .red & {
+    fill: $red;
+  }
+  .blue & {
+    fill: $blue;
+  }
+  .keyboard_disabled & {
+    fill: $gray;
+  }
+}

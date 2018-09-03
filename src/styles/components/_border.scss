@@ -1,0 +1,31 @@
+.game__border {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top:0;
+  left:0;
+  pointer-events: none;
+  border-style:solid;
+  border-width:4px;
+  transition:border 0.6s ease-out;
+  &.red {
+    border-color: $red;
+  }
+  &.blue {
+    border-color: $blue;
+  }
+  @media screen and (min-width:960px) {
+    border-width:1em;
+  }
+  &.active {
+    animation-name: activeBorder;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes activeBorder {
+  0% { opacity: 1 }
+  50% { opacity: 0.8 }
+  100% { opacity: 1 }
+}

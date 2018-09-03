@@ -1,0 +1,40 @@
+.codebreaker-ui {
+  display:flex;
+  justify-content:center;
+  align-items: flex-end;
+  line-height:1;
+  position:relative;
+} 
+
+.codebreaker-ui__room {
+  text-transform:uppercase;
+  font-weight:900;
+  position:absolute;
+  left:0;
+}
+
+.codebreaker-ui__room-code {
+  font-weight:normal;
+}
+
+.codebreaker-ui__selection {
+  background:none;
+  padding:0;
+  font-size:1.5em;
+  text-transform: uppercase;
+  font-weight: 900;
+  transition:color 0.3s ease-out;
+  color:$neutral;
+  border:none;
+}
+
+.selection__button {
+  cursor:pointer;
+  transition:box-shadow 0.3s ease-out;
+  .red & {
+    color: $red;
+  }
+  .blue & {
+    color: $blue;
+  }
+}

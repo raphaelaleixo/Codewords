@@ -1,0 +1,23 @@
+.codemaster-buttons {
+  display:flex;
+  align-items: flex-end;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.codemaster-ui__button {
+  background:none;
+  border-radius:50%;
+  border:none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25em;
+  font-weight: 900;
+  color: $white;
+  text-transform: uppercase;
+  transition:color 0.3s ease-out;
+  &[disabled] {
+    color:$black;
+  }
+}

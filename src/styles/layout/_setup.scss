@@ -1,0 +1,35 @@
+.welcome-screen {
+  text-align: center;
+}
+
+.welcome-screen__title {
+  margin:0;
+  font-size:3em;
+  text-transform:uppercase;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 0.9;
+  text-align: center;
+  @media screen and (min-width:960px) {
+    font-size:5em;
+  }
+}
+
+.welcome-screen__subtitle {
+  margin:1em 0;
+  font-size: 0.875em;
+  text-transform:uppercase;
+  font-weight: normal;
+}
+
+.welcome-screen__actions {
+  grid-area: footer;
+  display:flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+}
+
+.ludoratory__logo {
+  width: 10em;
+  margin:1em 0;
+}
