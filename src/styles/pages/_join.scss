@@ -1,6 +1,13 @@
-.join__title {
+.join__title,
+.error__title {
   font-size:2em;
   margin:0;
+  text-align: center;
+}
+
+.error__subtitle {
+  font-size:1.125em;
+  text-align: center;
 }
 
 .join__input {

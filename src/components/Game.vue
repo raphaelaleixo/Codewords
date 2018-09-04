@@ -249,6 +249,23 @@ export default {
     eventBus.$on("codeChanged", code => {
       this.game.code = code;
     });
+  },
+  beforeRouteEnter(to, from, next) {
+    database
+      .ref("games")
+      .orderByChild("room")
+      .equalTo(to.params.room)
+      .once("value", snapshot => {
+        if (!snapshot.exists()) {
+          next("/error/");
+        }
+      });
+    if (to.params.role !== "codemaster" && to.params.role !== "codebreaker") {
+      next("/error/");
+    }
+    else {
+      next();
+    }
   }
 };
 </script>
