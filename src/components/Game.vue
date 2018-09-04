@@ -132,12 +132,12 @@ export default {
         return "assassin";
       } else if (
         this.redScore === 9 ||
-        (this.redScore === 8 && this.firstTurn === "blue")
+        (this.redScore === 8 && this.game.firstTurn === "blue")
       ) {
         return "red";
       } else if (
         this.blueScore === 9 ||
-        (this.blueScore === 8 && this.firstTurn === "red")
+        (this.blueScore === 8 && this.game.firstTurn === "red")
       ) {
         return "blue";
       }
