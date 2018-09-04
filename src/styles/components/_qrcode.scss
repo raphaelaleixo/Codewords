@@ -5,28 +5,42 @@
 }
 
 .game-code__main {
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  padding:0 2em;
+  @media screen and (min-width:960px){ 
+    flex-direction: row;
+    justify-content: space-around;
+  }
 }
 
 .game-code__text-area {
-  width:30%;
-  color: $black;
-  text-transform: uppercase;
-  line-height: 1;
+  width:90%;
+  @media screen and (min-width:960px){ 
+    width:30%;
+    padding:0;
+  }
 }
 
 .game-code__title {
   font-size:1.5em;
+
 }
 
 .game-code__code {
-  font-size:5em;
+  font-size:3em;
   font-weight: 900;
+  @media screen and (min-width:960px){ 
+    font-size:5em;
+  }
 }
 
 .game-code__text {
   line-height: 1.6;
+  font-size:0.8em;
+  @media screen and (min-width:960px){ 
+    font-size:1em;
+  }
 }
 
 .game-code__button {
@@ -46,9 +60,21 @@
   }
 }
 
+.game-code__link {
+  font-weight: 900;
+  color:$black;
+}
+
 .game-code__qr {
-  width:20%;
-  canvas {
-    width:100%;
-  }
+    display:block;
+    font-size:1.5em;
+    width:40%;
+    margin:-1em 0 1em;
+    canvas {
+      width:100%;
+    }
+    @media screen and (min-width:960px){ 
+      width:20%;
+      margin:0;
+    }
 }
