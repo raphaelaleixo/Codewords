@@ -223,14 +223,14 @@ export default {
         });
     },
     newGame() {
-      // const ref = database.ref("games");
-      // ref
-      //   .orderByChild("room")
-      //   .equalTo(this.room)
-      //   .once("value")
-      //   .then(snapshot => {
-      //     database.ref("games/" + snapshot.node_.children_.root_.key).remove();
-      //   });
+      const ref = database.ref("games");
+      ref
+        .orderByChild("room")
+        .equalTo(this.room)
+        .once("value")
+        .then(snapshot => {
+          database.ref("games/" + snapshot.node_.children_.root_.key).remove();
+        });
       this.$router.push("/");
     }
   },
