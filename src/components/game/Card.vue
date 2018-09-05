@@ -62,10 +62,6 @@ export default {
   &.card_selectable {
     cursor: pointer;
   }
-  // &.selected {
-  //   border-color: springgreen;
-  //   cursor: pointer;
-  // }
   @media screen and (min-width: 960px) {
     font-size: 1em;
   }
@@ -119,7 +115,7 @@ export default {
   height: 100%;
   padding: 0.5em;
   text-align: center;
-  transition: transform 0.6s ease-out, box-shadow 0.3s ease-out;
+  transition: transform 0.6s ease-out, box-shadow 0.3s ease-out, color 0.3s ease-out;
   transform-style: preserve-3d;
 }
 
