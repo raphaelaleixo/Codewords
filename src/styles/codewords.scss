@@ -53,7 +53,7 @@ body {
 }
 
 .turn-indicator {
-  margin:1em;
+  margin:1em 0 0;
   text-align: center;
   line-height: 1;
   @media screen and (min-width:960px) {
@@ -62,13 +62,16 @@ body {
 }
 
 .turn-indicator__player {
-  font-size:1.125em;
+  font-size:1em;
   text-transform: uppercase;
   @include color();
+  @media screen and (min-width:960px) {
+    font-size:1.125em;
+   }
 }
 
 .turn-indicator__code {
-  font-size:1.5em;
+  font-size:1.4em;
   letter-spacing: -1px;
   text-transform: uppercase;
   font-weight: 900;
@@ -131,13 +134,16 @@ body {
 }
 
 .winner-indicator__motiff {
-  font-size:1.125em;
+  font-size:1em;
   text-transform: uppercase;
   @include color();
+  @media screen and (min-width:960px) {
+    font-size:1.125em;
+   }
 }
 
 .winner-indicator__winner {
-  font-size:1.5em;
+  font-size:1.4em;
   letter-spacing: -1px;
   text-transform: uppercase;
   font-weight: 900;
