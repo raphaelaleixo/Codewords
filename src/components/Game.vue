@@ -6,7 +6,7 @@
           v-if="player.role==='codebreaker' && showRoom===true"></qr-code>
     <div v-else class="wrapper">
       <div class="game__header header">         
-        <score :redScore="redScore" :blueScore="blueScore"/>
+        <score :redScore="redScore" :blueScore="blueScore" :firstPlayer="game.firstTurn"/>
         <turn-indicator 
           v-if="!winner"
           :player="player"
