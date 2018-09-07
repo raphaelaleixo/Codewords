@@ -1,5 +1,6 @@
 @import './abstracts/colors';
 @import './abstracts/mixins';
+@import './base/fonts';
 @import './base/base';
 @import './elements/buttons';
 @import './layout/layout';
@@ -13,8 +14,6 @@
 @import './components/codemaster-buttons';
 @import './components/codebreaker-buttons';
 //
-
-@import url('https://fonts.googleapis.com/css?family=Montserrat:600,900');
 
 body {
   margin:0;

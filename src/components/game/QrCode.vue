@@ -4,9 +4,10 @@
       <div class="game-code__text-area">
         <div class="game-code__title">Room Code:</div>
         <div class="game-code__code">{{room}}</div>
-        <p class="game-code__text">Your game is ready. Please ask the codemasters to scan the QR CODE to access their data.</p>
+        <p class="game-code__text">Your game is ready. Please ask the codemasters to scan the QRcode to access their data.</p>
         <p class="game-code__text">they can also join using the url <a class="game-code__link" href="http://codewords.ludoratory.com/join">codewords.ludoratory.com/join</a> and entering the room code.</p>
         <button class="game-code__button" @click="closeCode()">play game</button>
+        <div class="game-code__starting"><span class="game-code__team">{{turn}}</span> team will start this game</div>
       </div>
       <div class="game-code__qr">
         <qrcode :options="{size:1000, background:'#f4f4f8', foreground:'#091619'}"

@@ -5,8 +5,8 @@
             <img class="ludoratory__logo" src="../assets/ludoratory.svg"/>
         </div>
         <div class="welcome-screen__header main">
-            <h1 class="welcome-screen__title">C0d3&#8203;w0Яd$</h1>
-            <h2 class="welcome-screen__subtitle">a vue.js implementation of vlaada chvátil’s boardgame</h2>
+            <h1 class="welcome-screen__title">Code&#8203;words</h1>
+            <h2 class="welcome-screen__subtitle">A web-based version of Vlaada Chvátil’s party game</h2>
             <div class="welcome-screen__actions">
                 <button class="welcome-screen__button button" @click="join()">join game</button>
                 <button class="welcome-screen__button button" @click="createGame()">new game</button>
@@ -92,7 +92,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-
-</style>

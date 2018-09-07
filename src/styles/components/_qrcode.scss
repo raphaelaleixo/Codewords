@@ -1,4 +1,3 @@
-
 .game-code {
   background: $white;
   color: $black;
@@ -7,74 +6,89 @@
 .game-code__main {
   flex-direction: column-reverse;
   align-items: flex-start;
-  padding:0 2em;
-  @media screen and (min-width:960px){ 
+  padding: 0 2em;
+  @media screen and (min-width: 960px) {
     flex-direction: row;
     justify-content: space-around;
   }
 }
 
 .game-code__text-area {
-  width:90%;
-  @media screen and (min-width:960px){ 
-    width:30%;
-    padding:0;
+  width: 90%;
+  @media screen and (min-width: 960px) {
+    width: 30%;
+    padding: 0;
   }
 }
 
 .game-code__title {
-  font-size:1.5em;
-
+  font-size: 1.5em;
+  text-transform: uppercase;
 }
 
 .game-code__code {
-  font-size:3em;
+  font-size: 3em;
   font-weight: 900;
-  @media screen and (min-width:960px){ 
-    font-size:5em;
+  line-height: 1;
+  text-transform: uppercase;
+  @media screen and (min-width: 960px) {
+    font-size: 5em;
   }
 }
 
 .game-code__text {
-  line-height: 1.6;
-  font-size:0.8em;
-  @media screen and (min-width:960px){ 
-    font-size:1em;
+  line-height: 1.4;
+  font-size: 0.8em;
+  @media screen and (min-width: 960px) {
+    font-size: 1.15em;
   }
 }
 
 .game-code__button {
-  font-size:1.5em;
-  margin:1em 0 0;
-  background:none;
-  border:none;
+  font-size: 1.5em;
+  margin: 1em 0 0;
+  background: none;
+  border: none;
   font-weight: 900;
-  text-transform:uppercase;
-  cursor:pointer;
+  text-transform: uppercase;
+  padding: 0;
+  cursor: pointer;
   .red & {
     color: $red;
   }
-
   .blue & {
     color: $blue;
   }
 }
 
+.game-code__starting {
+  font-size: 0.875em;
+}
+
+.game-code__team {
+  text-transform: capitalize;
+}
+
 .game-code__link {
   font-weight: 900;
-  color:$black;
+  .red & {
+    color: $red;
+  }
+  .blue & {
+    color: $blue;
+  }
 }
 
 .game-code__qr {
-    display:block;
-    font-size:1.5em;
-    width:40%;
-    margin:-1em 0 1em;
-    canvas {
-      width:100%;
-    }
-    @media screen and (min-width:960px){ 
-      width:20%;
-      margin:0;
-    }
+  display: block;
+  font-size: 1.5em;
+  width: 40%;
+  margin: -1em 0 1em;
+  canvas {
+    width: 100%;
+  }
+  @media screen and (min-width: 960px) {
+    width: 20%;
+    margin: 0;
+  }
 }
