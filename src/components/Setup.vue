@@ -18,7 +18,7 @@
 <script>
 
 
-import Words from '../data/Words_ptbr';
+import Words from '../data/Words';
 import {getRandom} from '../utils/utils';
 import {database} from '../utils/utils';
 
