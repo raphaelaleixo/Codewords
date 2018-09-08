@@ -8,9 +8,15 @@
             <h1 class="welcome-screen__title">Code&#8203;words</h1>
             <h2 class="welcome-screen__subtitle">{{t('A web-based version of Vlaada Chvátil’s party game')}}</h2>
             <div class="welcome-screen__actions">
-                <button class="welcome-screen__button button" @click="join()">{{t('join game')}}</button>
                 <button class="welcome-screen__button button" @click="createGame()">{{t('new game')}}</button>
+                <!-- <button class="welcome-screen__button-join button" @click="join()">{{t('join game')}}</button> -->
             </div>
+        </div>
+        <div class="welcome-screen__footer footer">
+            <a class="welcome-screen__link" href="#">{{t('About this project')}}</a>
+            <a class="welcome-screen__link" href="#">{{t('How to play')}}</a>
+            <a @click="setLang('pt_br')" v-if="!this.$translate.lang" class="welcome-screen__link" href="#">Versão em português</a>
+            <a @click="setLang('')" v-else class="welcome-screen__link" href="#">English version</a>
         </div>
     </div>
 </template>
@@ -98,19 +104,24 @@ export default {
                     }
                 }
             );
+        },
+        setLang(lang) {
+            localStorage.lang = lang;
+            this.$translate.setLang(lang);
         }
     },
     locales: {
         pt_br: {
             'A web-based version of Vlaada Chvátil’s party game' : 'Uma versão web do party game de Vlaada Chvátil',
-            'join game' : 'entrar num jogo',
+            'join game' : 'entrar em uma sala',
+            'or' : 'ou',
+            'About this project' : 'Sobre este projeto',
+            'How to play' : 'Como jogar',
             'new game' : 'novo jogo' 
         }
     },
     mounted() {
-        if (this.$route.query.lang==='pt_br') {
-            this.$translate.setLang('pt_br');
-        }
+        this.$translate.setLang(localStorage.lang);
     }
 }
 </script>

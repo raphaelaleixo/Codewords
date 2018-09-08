@@ -277,9 +277,7 @@ export default {
     }
   },
   mounted() {
-    if (this.$route.query.lang === "pt_br") {
-      this.$translate.setLang("pt_br");
-    }
+    this.$translate.setLang(localStorage.lang);
   }
 };
 </script>

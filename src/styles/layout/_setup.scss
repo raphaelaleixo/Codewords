@@ -25,7 +25,47 @@
   grid-area: footer;
   display:flex;
   justify-content: space-evenly;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
+  margin:2em 0;
+
+}
+
+.welcome-screen__button,
+.welcome-screen__button-join {
+  margin:0.5em 0;
+}
+
+.welcome-screen__button-join {
+  font-weight: normal;
+  text-transform:none;
+  font-size:1em;
+}
+
+.welcome-screen__footer {
+  display:flex;
+  justify-content:space-around;
+  align-items: center;
+}
+
+.welcome-screen__link {
+  width:calc(33% - 1em);
+  color:$red;
+  font-size:0.75em;
+  text-decoration:none;
+  display: block;
+  transition: color 0.3s;
+  &:hover {
+    color:$blue;
+  }
+  @media screen and (min-width:960px) {
+  &:first-child {
+    text-align:left;
+  }
+  &:last-child {
+    text-align:right;
+  }
+  }
 }
 
 .ludoratory__logo {

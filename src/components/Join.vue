@@ -12,20 +12,28 @@
 export default {
   data() {
     return {
-      roomToEnter:'',
-    }
+      roomToEnter: ""
+    };
   },
   methods: {
     goToRoom() {
-          this.$router.push('/game/'+this.roomToEnter.toLowerCase()+'/codemaster/'+this.codemasterAllegiance);
-    },
+      this.$router.push(
+        "/game/" +
+          this.roomToEnter.toLowerCase() +
+          "/codemaster/" +
+          this.codemasterAllegiance
+      );
+    }
   },
   locales: {
-    pt_br : {
-      'Join game' : 'Entrar num jogo',
-      'room key' : 'Código da sala',
-      'Enter game' : 'Entrar'
+    pt_br: {
+      "Join game": "Entrar num jogo",
+      "room key": "Código da sala",
+      "Enter game": "Entrar"
     }
+  },
+  mounted() {
+    this.$translate.setLang(localStorage.lang);
   }
 };
 </script>

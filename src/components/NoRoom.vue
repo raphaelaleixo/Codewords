@@ -12,20 +12,23 @@
 export default {
   data() {
     return {
-      roomToEnter:'',
-    }
+      roomToEnter: ""
+    };
   },
   methods: {
     goToRoom() {
-          this.$router.push('/');
-    },
+      this.$router.push("/");
+    }
   },
   locales: {
     pt_br: {
-      'Nothing to see here' : 'Nada para ver aqui',
-      "There's no game with this code." : "Não há jogo com esse código.",
-      'Go back' : 'Voltar'
+      "Nothing to see here": "Nada para ver aqui",
+      "There's no game with this code.": "Não há jogo com esse código.",
+      "Go back": "Voltar"
     }
+  },
+  mounted() {
+    this.$translate.setLang(localStorage.lang);
   }
 };
 </script>
