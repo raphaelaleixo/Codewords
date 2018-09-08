@@ -131,7 +131,7 @@ export default {
       if (this.assassinShown) {
         return "assassin";
       } else if (
-        (this.redScore === 9 && this.blueScore === 8 ) ||
+        (this.redScore === 9 && this.blueScore === 8) ||
         (this.redScore === 8 && this.blueScore === 9)
       ) {
         return "tie";
@@ -272,8 +272,13 @@ export default {
     }
   },
   locales: {
-    pt_br : {
-      'Restart' : 'Recomeçar'
+    pt_br: {
+      Restart: "Recomeçar"
+    }
+  },
+  mounted() {
+    if (this.$route.query.lang === "pt_br") {
+      this.$translate.setLang("pt_br");
     }
   }
 };
