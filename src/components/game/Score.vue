@@ -1,7 +1,7 @@
 <template>
   <div class="score">
-      <div class="score__red">{{redScore}}/{{redTotal}} red</div>
-      <div class="score__blue">blue {{blueScore}}/{{blueTotal}}</div>
+      <div class="score__red">{{redScore}}/{{redTotal}} {{t('red')}}</div>
+      <div class="score__blue">{{t('blue')}} {{blueScore}}/{{blueTotal}}</div>
   </div>
 </template>
 
@@ -18,6 +18,12 @@
       },
       blueTotal() {
         return this.firstPlayer === 'blue' ? 9 : 8;
+      }
+    },
+    locales: {
+      pt_br: {
+        'blue' : 'azul',
+        'red' : 'vermelho'
       }
     }
   }

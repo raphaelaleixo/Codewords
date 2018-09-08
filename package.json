@@ -11,7 +11,8 @@
     "@xkeshi/vue-qrcode": "^1.0.0",
     "firebase": "^5.4.1",
     "vue": "^2.5.17",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-translate-plugin": "^1.2.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.1",

@@ -6,10 +6,10 @@
         </div>
         <div class="welcome-screen__header main">
             <h1 class="welcome-screen__title">Code&#8203;words</h1>
-            <h2 class="welcome-screen__subtitle">A web-based version of Vlaada Chvátil’s party game</h2>
+            <h2 class="welcome-screen__subtitle">{{t('A web-based version of Vlaada Chvátil’s party game')}}</h2>
             <div class="welcome-screen__actions">
-                <button class="welcome-screen__button button" @click="join()">join game</button>
-                <button class="welcome-screen__button button" @click="createGame()">new game</button>
+                <button class="welcome-screen__button button" @click="join()">{{t('join game')}}</button>
+                <button class="welcome-screen__button button" @click="createGame()">{{t('new game')}}</button>
             </div>
         </div>
     </div>
@@ -19,6 +19,7 @@
 
 
 import Words from '../data/Words';
+import Words_ptbr from '../data/Words_ptbr';
 import {getRandom} from '../utils/utils';
 import {database} from '../utils/utils';
 
@@ -26,7 +27,10 @@ export default {
     data () {
         return {
             codemasterAllegiance:'blue',
-            words: getRandom(Words,25),
+            words: {
+                default: getRandom(Words,25),
+                pt_br: getRandom(Words_ptbr,25)
+            },
             devices: 1
         }
     },
@@ -34,9 +38,15 @@ export default {
         firstTurn() {
             return parseInt(Math.random() * 2) === 0 ? "red" : "blue";
         },
+        translatedWords() {
+            if (this.$translate.lang==='pt_br') 
+                return this.words.pt_br
+            else 
+                return this.words.default    
+        },
         map() {
             const colorMap = [];
-            for (let i = 0; i < this.words.length - 2; i++) {
+            for (let i = 0; i < this.translatedWords.length - 2; i++) {
             if (i % 3 === 0) colorMap.push("red");
                 else if (i % 3 === 1) colorMap.push("blue");
                 else colorMap.push("neutral");
@@ -50,7 +60,7 @@ export default {
         },
         cards() {
             const self = this;
-            return this.words.map((word, index) => ({
+            return this.translatedWords.map((word, index) => ({
                 id: index,
                 word: word,
                 allegiance: self.map[index],
@@ -61,7 +71,7 @@ export default {
     },
     methods: {
         join() {
-            this.$router.push('/join')
+            this.$router.push('/join');
         },
         getWords() {
            this.words = getRandom(Words,25);
@@ -88,6 +98,18 @@ export default {
                     }
                 }
             );
+        }
+    },
+    locales: {
+        pt_br: {
+            'A web-based version of Vlaada Chvátil’s party game' : 'Uma versão web do party game de Vlaada Chvátil',
+            'join game' : 'entrar num jogo',
+            'new game' : 'novo jogo' 
+        }
+    },
+    mounted() {
+        if (this.$route.query.lang==='pt_br') {
+            this.$translate.setLang('pt_br');
         }
     }
 }

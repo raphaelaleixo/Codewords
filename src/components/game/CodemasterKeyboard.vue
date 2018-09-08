@@ -21,7 +21,7 @@
         </template>
         <template v-else>
             <div class="codemaster-ui__count count">
-                <div class="count__text">How many cards?</div>
+                <div class="count__text">{{t('How many cards')}}?</div>
                 <div class="count__input">
                     <button class="count__button count__button_remove"
                         :disabled="count===1"
@@ -95,6 +95,16 @@
                     select: this.select,
                     count: this.count < this.max ? this.count + 1 : this.count
                 });
+            }
+        },
+        mounted() {
+            if (this.$translate.lang==='pt_br') {
+                this.keys[1].row.push('ç');
+            }
+        },
+        locales: {
+            pt_br: {
+                'How many cards' : 'Quantas cartas'
             }
         }
     }

@@ -2,7 +2,7 @@
     <div class="codemaster-buttons footer">
         <button class="codemaster-ui__button codemaster-ui__button_ok"
                 :disabled="select === 'word'"
-                @click="prevStep">Back
+                @click="prevStep">{{t('Back')}}
         </button>
         <button class="codemaster-ui__button codemaster-ui__button_ok"
                 :disabled="word.length === 0 || disabled"
@@ -53,6 +53,11 @@ export default {
     },
     commitCode() {
       this.$emit("countSelected");
+    }
+  },
+  locales: {
+    pt_br: {
+      'Back' : 'Voltar'
     }
   }
 };

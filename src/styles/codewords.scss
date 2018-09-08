@@ -1,5 +1,6 @@
 @import './abstracts/colors';
 @import './abstracts/mixins';
+@import './animations/animations';
 @import './base/fonts';
 @import './base/base';
 @import './elements/buttons';
@@ -63,6 +64,8 @@ body {
 .turn-indicator__player {
   font-size:1em;
   text-transform: uppercase;
+  position:relative;
+  z-index:1;
   @include color();
   @media screen and (min-width:960px) {
     font-size:1.125em;

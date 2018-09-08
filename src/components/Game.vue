@@ -54,7 +54,7 @@
           @showRoom="openCodeModal"
           @commitSelection="commitSelection"/>
       <div class="game__restart footer" v-if="winner">
-        <button class="button" @click="newGame()">Restart</button>
+        <button class="button" @click="newGame()">{{t('Restart')}}</button>
       </div>
     </div>
   </div>
@@ -130,6 +130,11 @@ export default {
     winner() {
       if (this.assassinShown) {
         return "assassin";
+      } else if (
+        (this.redScore === 9 && this.blueScore === 8 ) ||
+        (this.redScore === 8 && this.blueScore === 9)
+      ) {
+        return "tie";
       } else if (
         this.redScore === 9 ||
         (this.redScore === 8 && this.game.firstTurn === "blue")
@@ -262,9 +267,13 @@ export default {
       });
     if (to.params.role !== "codemaster" && to.params.role !== "codebreaker") {
       next("/error/");
-    }
-    else {
+    } else {
       next();
+    }
+  },
+  locales: {
+    pt_br : {
+      'Restart' : 'Recomeçar'
     }
   }
 };
