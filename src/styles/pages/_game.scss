@@ -18,8 +18,12 @@
 .codemaster-ui {
   flex: 1;
   flex-basis:auto;
-  height:40%;
+  height:30%;
   width:100%;
+  @media screen and (min-width:960px) {
+    width:30%;
+    height:25%;
+  }
 }
 
 .game__restart {

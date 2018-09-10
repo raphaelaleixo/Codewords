@@ -16,19 +16,21 @@
 
 .wrapper {
   height:100%;
-  display:grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 2fr 9fr 1fr;
-  grid-gap: 1px 1px;
-  grid-template-areas: "header" "main" "footer";
+  position:relative;
 }
 
 .header {
-  grid-area: header;
+  position:absolute;
+  top:0;
+  height:16.66%;
+  width:100%;
 }
 
 .main {
-  grid-area: main;
+  position: absolute;
+  top:16.66%;
+  height:75%;
+  width:100%;
   display:flex;
   flex-direction:column;
   align-items: center;
@@ -36,5 +38,8 @@
 }
 
 .footer {
-  grid-area: footer;
+  position:absolute;
+  top: 91.66%;
+  width:100%;
+  height:8.33%;
 }
