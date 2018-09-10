@@ -9,7 +9,7 @@
             <h2 class="welcome-screen__subtitle">{{t('A web-based version of Vlaada Chvátil’s party game')}}</h2>
             <div class="welcome-screen__actions">
                 <button class="welcome-screen__button button" @click="createGame()">{{t('new game')}}</button>
-                <!-- <button class="welcome-screen__button-join button" @click="join()">{{t('join game')}}</button> -->
+                <button class="welcome-screen__button-join button" @click="join()">{{t('join game')}}</button>
             </div>
         </div>
         <div class="welcome-screen__footer footer">
