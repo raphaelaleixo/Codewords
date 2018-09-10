@@ -1,19 +1,4 @@
 .glitch {
-  --time-anim: 4s;
-  --delay-anim: 2s;
-  --blend-mode-1: none;
-  --blend-mode-2: none;
-  --blend-mode-3: overlay;
-  --blend-mode-4: overlay;
-  --blend-mode-5: overlay;
-  --blend-color-1: transparent;
-  --blend-color-2: transparent;
-  --blend-color-3: $blue;
-  --blend-color-4: $red;
-  --blend-color-5: $blue;
-}
-
-.glitch {
   z-index:-1;
 	position: absolute;
 	width: 100vw;
