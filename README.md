@@ -27,7 +27,7 @@ My take on it, Codewords, is a realtime multiplayer version of that boardgame, w
 ### Credits
 I’ve made the design and coding for the game using some help from frameworks, libraries and resources:
 
-- [Vue.js](https://vuejs.org/) for the front-end, using [Vue-Cli](https://cli.vuejs.org/), with PWA support.
+- [Vue.js](https://vuejs.org/) for the front-end, using [Vue-CLI](https://cli.vuejs.org/), with PWA support.
 - [Firebase](http://firebase.google.com) for managing the real-time updates.
 - [Vue QRCode](https://github.com/xkeshi/vue-qrcode), by xkeshi, for creating QRCodes for each new game.
 - [Vue Translate](https://github.com/javisperez/vuetranslate), by javisperez, to allow the game to be played both in English or Portuguese.
