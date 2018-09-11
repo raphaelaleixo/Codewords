@@ -3,6 +3,10 @@
   user-select: none;
 }
 
+input, input:before, input:after {
+  user-select: initial;
+ }  
+
 body {
   margin:0;
   padding:0;
