@@ -18,7 +18,7 @@ Over the last months I’ve been studying some javascript frameworks — lik
 For this, I am starting a series of games under the “Ludoratory” brand: They will be experiments with web development and game design. Every game is meant to be free to play, no ads or tracking, and with an open source code. I hope that I can learn with them while making something fun for other people.
 
 ## Codewords
-Codenames, by Vlaada Chvátil, was my first target for my Ludoratory.
+[Codenames, by Vlaada Chvátil](http://codenamesgame.com), was my first target for my Ludoratory.
 
 If you haven’t played it yet, I recommend you to try to get a copy as soon as you can, because it is an amazing game.
 
@@ -27,7 +27,7 @@ My take on it, Codewords, is a realtime multiplayer version of that boardgame, w
 ### Credits
 I’ve made the design and coding for the game using some help from frameworks, libraries and resources:
 
-- [Vue.js](https://vuejs.org/) for the front-end, using Vue-Cli, with PWA support.
+- [Vue.js](https://vuejs.org/) for the front-end, using [Vue-Cli](https://cli.vuejs.org/), with PWA support.
 - [Firebase](http://firebase.google.com) for managing the real-time updates.
 - [Vue QRCode](https://github.com/xkeshi/vue-qrcode), by xkeshi, for creating QRCodes for each new game.
 - [Vue Translate](https://github.com/javisperez/vuetranslate), by javisperez, to allow the game to be played both in English or Portuguese.
