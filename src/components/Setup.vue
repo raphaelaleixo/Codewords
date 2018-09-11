@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="welcome-screen__footer footer">
-            <a class="welcome-screen__link" href="#">{{t('About this project')}}</a>
+            <a class="welcome-screen__link" target="_blank" href="https://medium.com/@raphaelaleixo/creating-codewords-a-real-time-multiplayer-boardgame-on-the-web-ca051071e75">{{t('About this project')}}</a>
             <a class="welcome-screen__link" target="_blank" href="https://medium.com/@raphaelaleixo/codewords-how-to-play-7b988ceb14b2">{{t('How to play')}}</a>
             <a @click="setLang('pt_br')" v-if="!this.$translate.lang" class="welcome-screen__link" href="#">Versão em português</a>
             <a @click="setLang('')" v-else class="welcome-screen__link" href="#">English version</a>
