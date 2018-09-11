@@ -5,6 +5,9 @@
         <input class="join__input" name="room" :placeholder="t('room key')" v-model="roomToEnter"/>
         <button class="join__button button">{{t('Enter game')}}</button>
       </form>
+      <div class="join join__footer footer">
+        <router-link class="join join__back-link" to="/">{{t('go back')}}</router-link>
+      </div>
   </div>
 </template>
 
@@ -20,16 +23,16 @@ export default {
       this.$router.push(
         "/game/" +
           this.roomToEnter.toLowerCase() +
-          "/codemaster/" +
-          this.codemasterAllegiance
+          "/codemaster/"
       );
     }
   },
   locales: {
     pt_br: {
-      "Join game": "Entrar num jogo",
-      "room key": "Código da sala",
-      "Enter game": "Entrar"
+      "Join game": "Entrar na sala",
+      "room key": "Código",
+      "Enter game": "Entrar",
+      "go back" : "voltar"
     }
   },
   mounted() {

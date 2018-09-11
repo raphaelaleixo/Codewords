@@ -16,8 +16,24 @@
   border:none;
   padding:0.5em;
   width: 10em;
-  font-size:2em;
+  font-size:1.5em;
   margin:1em 0;
   font-weight: 900;
 }
 
+.join__footer {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.join__back-link {
+  margin:0 auto;
+  font-size:0.875em;
+  color: $blue;
+  text-decoration: none;
+  transform: color 0.3s ease-out;
+  &:hover {
+    color: $red;
+  }
+}
