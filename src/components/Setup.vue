@@ -22,106 +22,113 @@
 </template>
 
 <script>
-
-
-import Words from '../data/Words';
-import Words_ptbr from '../data/Words_ptbr';
-import {getRandom} from '../utils/utils';
-import {database} from '../utils/utils';
+import Words from "../data/Words";
+import Words_ptbr from "../data/Words_ptbr";
+import { getRandom } from "../utils/utils";
+import { database } from "../utils/utils";
 
 export default {
-    data () {
-        return {
-            codemasterAllegiance:'blue',
-            words: {
-                default: getRandom(Words,25),
-                pt_br: getRandom(Words_ptbr,25)
-            },
-            devices: 1
-        }
+  data() {
+    return {
+      codemasterAllegiance: "blue",
+      words: {
+        default: getRandom(Words, 25),
+        pt_br: getRandom(Words_ptbr, 25)
+      },
+      devices: 1
+    };
+  },
+  computed: {
+    firstTurn() {
+      return parseInt(Math.random() * 2) === 0 ? "red" : "blue";
     },
-    computed: {
-        firstTurn() {
-            return parseInt(Math.random() * 2) === 0 ? "red" : "blue";
-        },
-        translatedWords() {
-            if (this.$translate.lang==='pt_br') 
-                return this.words.pt_br
-            else 
-                return this.words.default    
-        },
-        map() {
-            const colorMap = [];
-            for (let i = 0; i < this.translatedWords.length - 2; i++) {
-            if (i % 3 === 0) colorMap.push("red");
-                else if (i % 3 === 1) colorMap.push("blue");
-                else colorMap.push("neutral");
-            }
-            colorMap.push("assassin");
-            colorMap.push(this.firstTurn);
-            return [...getRandom(colorMap,25)];
-        },
-        room() {
-            return Math.random().toString(36).substr(2, 5);
-        },
-        cards() {
-            const self = this;
-            return this.translatedWords.map((word, index) => ({
-                id: index,
-                word: word,
-                allegiance: self.map[index],
-                visibility: "hidden",
-                isSelected: false
-            }));
-        }
+    translatedWords() {
+      if (this.$translate.lang === "pt_br") return this.words.pt_br;
+      else return this.words.default;
     },
-    methods: {
-        join() {
-            this.$router.push('/join');
-        },
-        getWords() {
-           this.words = getRandom(Words,25);
-        },
-        createGame() {
-            const self = this;
-            database.ref('games').push().set(
-                {
-                    room: this.room,
-                    devices: this.devices,
-                    cards: this.cards,
-                    firstTurn: this.firstTurn,
-                    turn:0,
-                    code: {
-                        select: 'word',
-                        word: '',
-                        count: 1,
-                    }
-                }, function(err) {
-                    if (err) {
-                        return
-                    } else {
-                        self.$router.push('/game/'+self.room+'/codebreaker')
-                    }
-                }
-            );
-        },
-        setLang(lang) {
-            localStorage.lang = lang;
-            this.$translate.setLang(lang);
-        }
+    map() {
+      const colorMap = [];
+      for (let i = 0; i < this.translatedWords.length - 2; i++) {
+        if (i % 3 === 0) colorMap.push("red");
+        else if (i % 3 === 1) colorMap.push("blue");
+        else colorMap.push("neutral");
+      }
+      colorMap.push("assassin");
+      colorMap.push(this.firstTurn);
+      return [...getRandom(colorMap, 25)];
     },
-    locales: {
-        pt_br: {
-            'A web-based version of Vlaada Chvátil’s party game' : 'Uma versão web do party game de Vlaada Chvátil',
-            'join game' : 'entrar em uma sala',
-            'or' : 'ou',
-            'About this project' : 'Sobre este projeto',
-            'How to play' : 'Como jogar',
-            'new game' : 'novo jogo' 
-        }
+    room() {
+      return Math.random()
+        .toString(36)
+        .substr(2, 5);
     },
-    mounted() {
-        this.$translate.setLang(localStorage.lang);
+    cards() {
+      const self = this;
+      return this.translatedWords.map((word, index) => ({
+        id: index,
+        word: word,
+        allegiance: self.map[index],
+        visibility: "hidden",
+        isSelected: false
+      }));
     }
-}
+  },
+  methods: {
+    join() {
+      this.$router.push("/join");
+    },
+    getWords() {
+      this.words = getRandom(Words, 25);
+    },
+    createGame() {
+      const self = this;
+      const online = navigator.onLine;
+      if (!online) {
+          self.$router.push("/error/");
+      } else {
+        database
+          .ref("games")
+          .push()
+          .set(
+            {
+              room: this.room,
+              devices: this.devices,
+              cards: this.cards,
+              firstTurn: this.firstTurn,
+              turn: 0,
+              code: {
+                select: "word",
+                word: "",
+                count: 1
+              }
+            },
+            function(err) {
+              if (err) {   
+                return;
+              } else {
+                self.$router.push("/game/" + self.room + "/codebreaker");
+              }
+            }
+          );
+      }
+    },
+    setLang(lang) {
+      localStorage.lang = lang;
+      this.$translate.setLang(lang);
+    }
+  },
+  locales: {
+    pt_br: {
+      "A web-based version of Vlaada Chvátil’s party game":
+        "Uma versão web do party game de Vlaada Chvátil",
+      "join game": "entrar em uma sala",
+      "About this project": "Sobre este projeto",
+      "How to play": "Como jogar",
+      "new game": "novo jogo"
+    }
+  },
+  mounted() {
+    this.$translate.setLang(localStorage.lang);
+  }
+};
 </script>
