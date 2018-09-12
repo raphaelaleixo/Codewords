@@ -40,7 +40,4 @@
       }
     }
   }
-</script> 
-
-<style lang="scss">
-</style>
+</script>

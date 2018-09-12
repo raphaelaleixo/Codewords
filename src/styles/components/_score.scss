@@ -1,0 +1,16 @@
+.score {
+  font-size: 0.875em;
+  font-weight: 900;
+  text-transform:uppercase;
+  display:flex;
+  justify-content: space-between;
+  @media screen and (min-width:960px) {
+    font-size:1.125em;
+  }
+}
+.score__red {
+  color: $red;
+}
+.score__blue {
+  color: $blue;
+}

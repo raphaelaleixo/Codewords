@@ -109,35 +109,3 @@
         }
     }
 </script>
-
-<style lang="scss">
-    .codemaster-ui {
-        margin: 1em 0;
-    }
-    .code {
-        font-size: 1.875em;
-        font-weight: 900;
-        letter-spacing: -1px;
-        text-align: center;
-    }
-    .code__placeholder {
-        color: #b8b89c;
-    }
-    
-    .codemaster-ui__count {
-        margin:1em 0;
-    }
-
-    .count__text {
-        text-align: center;
-        font-weight: 900;
-        text-transform: uppercase;
-    }
-
-    .count__input {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
-
-</style>

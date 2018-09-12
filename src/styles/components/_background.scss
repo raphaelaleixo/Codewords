@@ -31,34 +31,38 @@
   }
 }
 
-.glitch__img:nth-child(2) {
-	background-color: transparent;
-	background-blend-mode: none;
-}
+@supports (clip-path: polygon(0 2%, 100% 2%, 100% 5%, 0 5%)) {
 
-.glitch__img:nth-child(3) {
-	background-color: $black;
-	background-blend-mode: none;
-}
+	.glitch__img:nth-child(2) {
+		background-color: transparent;
+		background-blend-mode: none;
+	}
 
-.glitch__img:nth-child(4) {
-	background-color: $black;
-	background-blend-mode: none;
-}
+	.glitch__img:nth-child(3) {
+		background-color: $black;
+		background-blend-mode: none;
+	}
 
-.glitch .glitch__img:nth-child(2) {
-	transform: translate3d(0, calc(-1 * 5px),0);
-	animation: glitch-anim-1 4s infinite linear  10s alternate;
-}
+	.glitch__img:nth-child(4) {
+		background-color: $black;
+		background-blend-mode: none;
+	}
 
-.glitch > .glitch__img:nth-child(3) {
-	transform: translate3d(calc(-1 * 10px),0,0);
-	animation: glitch-anim-2 4s infinite linear  10s alternate;
-}
+	.glitch .glitch__img:nth-child(2) {
+		transform: translate3d(0, calc(-1 * 5px),0);
+		animation: glitch-anim-1 4s infinite linear  10s alternate;
+	}
 
-.glitch > .glitch__img:nth-child(4) {
-	transform: translate3d(0, calc(-1 * 5px), 0) scale3d(1,1,1);
-	animation: glitch-anim-3 4s infinite linear 10s alternate;
+	.glitch > .glitch__img:nth-child(3) {
+		transform: translate3d(calc(-1 * 10px),0,0);
+		animation: glitch-anim-2 4s infinite linear  10s alternate;
+	}
+
+	.glitch > .glitch__img:nth-child(4) {
+		transform: translate3d(0, calc(-1 * 5px), 0) scale3d(1,1,1);
+		animation: glitch-anim-3 4s infinite linear 10s alternate;
+	}
+
 }
 
 @keyframes glitch-anim-1 {
