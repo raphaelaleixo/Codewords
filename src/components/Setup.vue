@@ -1,29 +1,64 @@
 <template>
-    
-    <div class="welcome-screen wrapper">
-        <div class="ludoratory header">
-            <img class="ludoratory__logo" src="../assets/ludoratory.svg"/>
-        </div>
-        <div class="welcome-screen__header main">
-            <h1 class="welcome-screen__title">Code&#8203;words</h1>
-            <h2 class="welcome-screen__subtitle">{{t('A web-based version of Vlaada Chvátil’s party game')}}</h2>
-            <div class="welcome-screen__actions">
-                <button class="welcome-screen__button button" @click="createGame()">{{t('new game')}}</button>
-                <button class="welcome-screen__button-join button" @click="join()">{{t('join game')}}</button>
-            </div>
-        </div>
-        <div class="welcome-screen__footer footer">
-            <a class="welcome-screen__link" target="_blank" href="https://medium.com/@raphaelaleixo/creating-codewords-a-real-time-multiplayer-boardgame-on-the-web-ca051071e75">{{t('About this project')}}</a>
-            <a class="welcome-screen__link" target="_blank" href="https://medium.com/@raphaelaleixo/codewords-how-to-play-7b988ceb14b2">{{t('How to play')}}</a>
-            <a @click="setLang('pt_br')" v-if="!this.$translate.lang" class="welcome-screen__link" href="#">Versão em português</a>
-            <a @click="setLang('')" v-else class="welcome-screen__link" href="#">English version</a>
-        </div>
+  <div class="welcome-screen wrapper">
+    <div class="ludoratory header">
+      <img class="ludoratory__logo" src="../assets/ludoratory.svg" />
     </div>
+    <div class="welcome-screen__header main">
+      <h1 class="welcome-screen__title">Code&#8203;words</h1>
+      <h2 class="welcome-screen__subtitle">
+        {{ t("A web-based version of Vlaada Chvátil’s party game") }}
+      </h2>
+      <div class="welcome-screen__actions">
+        <button class="welcome-screen__button button" @click="createGame()">
+          {{ t("new game") }}
+        </button>
+        <button class="welcome-screen__button-join button" @click="join()">
+          {{ t("join game") }}
+        </button>
+      </div>
+    </div>
+    <div class="welcome-screen__footer footer">
+      <a
+        class="welcome-screen__link"
+        target="_blank"
+        href="https://medium.com/@raphaelaleixo/creating-codewords-a-real-time-multiplayer-boardgame-on-the-web-ca051071e75"
+        >{{ t("About this project") }}</a
+      >
+      <a
+        class="welcome-screen__link"
+        target="_blank"
+        href="https://medium.com/@raphaelaleixo/codewords-how-to-play-7b988ceb14b2"
+        >{{ t("How to play") }}</a
+      >
+      <a
+        @click="setLang('pt_br')"
+        v-if="this.$translate.lang !== 'pt_br'"
+        class="welcome-screen__link"
+        href="#"
+        >Versão em português</a
+      >
+      <a
+        @click="setLang('fr')"
+        v-if="this.$translate.lang !== 'fr'"
+        class="welcome-screen__link"
+        href="#"
+        >Version en Français</a
+      >
+      <a
+        @click="setLang('')"
+        v-if="this.$translate.lang"
+        class="welcome-screen__link"
+        href="#"
+        >English version</a
+      >
+    </div>
+  </div>
 </template>
 
 <script>
 import Words from "../data/Words";
 import Words_ptbr from "../data/Words_ptbr";
+import Words_fr from "../data/Words_fr";
 import { getRandom } from "../utils/utils";
 import { database } from "../utils/utils";
 
@@ -33,7 +68,8 @@ export default {
       codemasterAllegiance: "blue",
       words: {
         default: getRandom(Words, 25),
-        pt_br: getRandom(Words_ptbr, 25)
+        pt_br: getRandom(Words_ptbr, 25),
+        fr: getRandom(Words_fr, 25)
       },
       devices: 1
     };
@@ -44,6 +80,7 @@ export default {
     },
     translatedWords() {
       if (this.$translate.lang === "pt_br") return this.words.pt_br;
+      else if (this.$translate.lang === "fr") return this.words.fr;
       else return this.words.default;
     },
     map() {
@@ -84,7 +121,7 @@ export default {
       const self = this;
       const online = navigator.onLine;
       if (!online) {
-          self.$router.push("/error/");
+        self.$router.push("/error/");
       } else {
         database
           .ref("games")
@@ -103,7 +140,7 @@ export default {
               }
             },
             function(err) {
-              if (err) {   
+              if (err) {
                 return;
               } else {
                 self.$router.push("/game/" + self.room + "/codebreaker");
@@ -125,6 +162,14 @@ export default {
       "About this project": "Sobre este projeto",
       "How to play": "Como jogar",
       "new game": "novo jogo"
+    },
+    fr: {
+      "A web-based version of Vlaada Chvátil’s party game":
+        "Une version Web du jeu de société de Vlaada Chvátil",
+      "join game": "Rejoins une partie",
+      "About this project": "À propos de ce projet",
+      "How to play": "Comment jouer",
+      "new game": "Nouveau jeu"
     }
   },
   mounted() {

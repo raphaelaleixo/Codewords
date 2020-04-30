@@ -34,6 +34,8 @@ I’ve made the design and coding for the game using some help from frameworks, 
 - [Shadow obscure male face photo](https://unsplash.com/photos/xgxzqRpK0UE), by Malik Earnest, for the background image.
 - [CSS Glitch effect](https://tympanus.net/codrops/2017/12/21/css-glitch-effect/), by Mary Lou on Codrops, also for the background image.
 
+Translation to french provided by Yves Pelletier
+
 ## Project setup
 ```
 npm install

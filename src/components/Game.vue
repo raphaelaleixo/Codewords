@@ -1,60 +1,91 @@
 <template>
   <div class="game" v-if="game.cards">
-    <border :winner="winner" :turn="handleTurn" :player="player"/>
-    <qr-code :turn="handleTurn.allegiance"
-          :room="room" @closeCodeModal="closeCodeModal"
-          v-if="player.role==='codebreaker' && showRoom===true"></qr-code>
+    <border :winner="winner" :turn="handleTurn" :player="player" />
+    <qr-code
+      :turn="handleTurn.allegiance"
+      :room="room"
+      @closeCodeModal="closeCodeModal"
+      v-if="player.role === 'codebreaker' && showRoom === true"
+    ></qr-code>
     <div v-else class="wrapper">
-      <div class="game__header header">         
-        <score :redScore="redScore" :blueScore="blueScore" :firstPlayer="game.firstTurn"/>
-        <turn-indicator 
+      <div class="game__header header">
+        <score
+          :redScore="redScore"
+          :blueScore="blueScore"
+          :firstPlayer="game.firstTurn"
+        />
+        <turn-indicator
           v-if="!winner"
           :player="player"
-          :turn="handleTurn" :code="game.code"></turn-indicator>
-        <winner-indicator :winner="winner" :turn="handleTurn.allegiance" v-else></winner-indicator>  
+          :turn="handleTurn"
+          :code="game.code"
+        ></turn-indicator>
+        <winner-indicator
+          :winner="winner"
+          :turn="handleTurn.allegiance"
+          v-else
+        ></winner-indicator>
       </div>
       <div class="game__main main">
-        <div class="board" :class="[handleTurn.allegiance, {'winner':winner}]">
-          <card v-for="(card) in game.cards" :key="card.id"
+        <div class="board" :class="[handleTurn.allegiance, { winner: winner }]">
+          <card
+            v-for="card in game.cards"
+            :key="card.id"
             class="card hyphenate"
             @select="selectCard($event)"
             @unselect="unselectCard($event)"
-            :class="[player.role==='codemaster' ? 'card_code-'+card.allegiance : '',
-                    card.visibility==='visible' ? 'card_turned-'+card.allegiance : '',
-                    {'card_selectable':handleTurn.role==='codebreaker' && player.role === 'codebreaker' && selectedCards.length<game.code.count,
-                    'card_selected':card.isSelected}
-                    ]"
+            :class="[
+              player.role === 'codemaster'
+                ? 'card_code-' + card.allegiance
+                : '',
+              card.visibility === 'visible'
+                ? 'card_turned-' + card.allegiance
+                : '',
+              {
+                card_selectable:
+                  handleTurn.role === 'codebreaker' &&
+                  player.role === 'codebreaker' &&
+                  selectedCards.length < game.code.count,
+                card_selected: card.isSelected
+              }
+            ]"
             :id="card.id"
             :allegiance="card.allegiance"
             :word="card.word"
             :is-selected="card.isSelected"
-            :visibility="card.visibility">
+            :visibility="card.visibility"
+          >
           </card>
         </div>
-          <codemaster-keyboard v-if="player.role==='codemaster'"
+        <codemaster-keyboard
+          v-if="player.role === 'codemaster'"
           :disabled="handleTurn.role !== player.role"
           :turn="handleTurn.allegiance"
           :select="game.code.select"
           :word="game.code.word"
-          :count="game.code.count" 
-          :max="game.cards.length - reveledCards"
-          />
-      </div> 
-      <codemaster-buttons v-if="player.role==='codemaster' && !winner"
-          @countSelected="commitCode"
-          :disabled="handleTurn.role !== player.role"
           :count="game.code.count"
-          :select="game.code.select"
-          :word="game.code.word" />
-      <codebreaker-buttons v-if="player.role==='codebreaker' && !winner" 
-          :room="room" 
-          :turn="handleTurn.allegiance"
-          :code="game.code"
-          :selectedCards="selectedCards.length"
-          @showRoom="openCodeModal"
-          @commitSelection="commitSelection"/>
+          :max="game.cards.length - reveledCards"
+        />
+      </div>
+      <codemaster-buttons
+        v-if="player.role === 'codemaster' && !winner"
+        @countSelected="commitCode"
+        :disabled="handleTurn.role !== player.role"
+        :count="game.code.count"
+        :select="game.code.select"
+        :word="game.code.word"
+      />
+      <codebreaker-buttons
+        v-if="player.role === 'codebreaker' && !winner"
+        :room="room"
+        :turn="handleTurn.allegiance"
+        :code="game.code"
+        :selectedCards="selectedCards.length"
+        @showRoom="openCodeModal"
+        @commitSelection="commitSelection"
+      />
       <div class="game__restart footer" v-if="winner">
-        <button class="button" @click="newGame()">{{t('Restart')}}</button>
+        <button class="button" @click="newGame()">{{ t("Restart") }}</button>
       </div>
     </div>
   </div>
@@ -145,6 +176,8 @@ export default {
         (this.blueScore === 8 && this.game.firstTurn === "red")
       ) {
         return "blue";
+      } else {
+        return false;
       }
     },
     handleTurn() {
@@ -274,6 +307,9 @@ export default {
   locales: {
     pt_br: {
       Restart: "Recomeçar"
+    },
+    fr: {
+      Restart: "Recommencer"
     }
   },
   mounted() {
@@ -281,6 +317,3 @@ export default {
   }
 };
 </script>
-
-
-

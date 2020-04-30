@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="base">
-    <background/>
+    <background />
     <transition name="page">
       <router-view></router-view>
     </transition>

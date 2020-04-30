@@ -2,21 +2,21 @@
   <div @click="selectCard()">
     <div class="card__wrapper">
       <div class="card__front">
-        <span class="card__word">{{word}}</span>
+        <span class="card__word">{{ word }}</span>
       </div>
       <div class="card__back">
-        <cross-icon class="card__icon" v-if="allegiance==='neutral'"/>
-        <gun-icon class="card__icon" v-else-if="allegiance==='assassin'"/>
-        <glasses-icon class="card__icon" v-else/>
+        <cross-icon class="card__icon" v-if="allegiance === 'neutral'" />
+        <gun-icon class="card__icon" v-else-if="allegiance === 'assassin'" />
+        <glasses-icon class="card__icon" v-else />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import CrossIcon from '../icons/Cross.vue';
-import GlassesIcon from '../icons/Glasses.vue';
-import GunIcon from '../icons/Gun.vue';
+import CrossIcon from "../icons/Cross.vue";
+import GlassesIcon from "../icons/Glasses.vue";
+import GunIcon from "../icons/Gun.vue";
 
 export default {
   components: {
@@ -49,4 +49,3 @@ export default {
   }
 };
 </script>
-

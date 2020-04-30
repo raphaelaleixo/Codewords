@@ -1,24 +1,30 @@
 <template>
-    <div class="codemaster-buttons footer">
-        <button class="codemaster-ui__button codemaster-ui__button_ok"
-                :disabled="select === 'word'"
-                @click="prevStep">{{t('Back')}}
-        </button>
-        <button class="codemaster-ui__button codemaster-ui__button_ok"
-                :disabled="word.length === 0 || disabled"
-                @click="nextStep">Ok
-        </button>
-    </div>
+  <div class="codemaster-buttons footer">
+    <button
+      class="codemaster-ui__button codemaster-ui__button_ok"
+      :disabled="select === 'word'"
+      @click="prevStep"
+    >
+      {{ t("Back") }}
+    </button>
+    <button
+      class="codemaster-ui__button codemaster-ui__button_ok"
+      :disabled="word.length === 0 || disabled"
+      @click="nextStep"
+    >
+      Ok
+    </button>
+  </div>
 </template>
 
 <script>
-import {eventBus} from '../../main';
+import { eventBus } from "../../main";
 export default {
   props: {
     disabled: Boolean,
     select: String,
     word: String,
-    count:Number
+    count: Number
   },
   methods: {
     vibrate(milisseconds) {
@@ -57,7 +63,10 @@ export default {
   },
   locales: {
     pt_br: {
-      'Back' : 'Voltar'
+      Back: "Voltar"
+    },
+    fr: {
+      Back: "Retour"
     }
   }
 };
