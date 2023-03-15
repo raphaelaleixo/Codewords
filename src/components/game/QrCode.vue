@@ -13,8 +13,8 @@
         </p>
         <p class="game-code__text">
           {{ t("They can also join using the url") }}
-          <a class="game-code__link" href="http://codewords.ludoratory.com/join"
-            >codewords.ludoratory.com/join</a
+          <a class="game-code__link" href="http://cdwrds.ludoratory.com/join"
+            >cdwrds.ludoratory.com/join</a
           >
           {{ t("and entering the room code.") }}
         </p>
@@ -35,9 +35,7 @@
             background: '#f4f4f8',
             foreground: '#091619'
           }"
-          :value="
-            'http://codewords.ludoratory.com/game/' + room + '/codemaster/'
-          "
+          :value="'http://cdwrds.ludoratory.com/game/' + room + '/codemaster/'"
         >
         </qrcode>
       </div>
