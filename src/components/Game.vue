@@ -322,12 +322,10 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     const roomRef = getRoomRef(to.params.room);
-    console.log(to.params.room);
     onValue(roomRef, () => {
-      console.log(roomRef);
-      // if (!snapshot.val()) {
-      //   next("/error/");
-      // }
+      if (!snapshot.val()) {
+        next("/error/");
+      }
     });
     if (to.params.role !== "codemaster" && to.params.role !== "codebreaker") {
       next("/error/");

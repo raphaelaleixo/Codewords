@@ -13,7 +13,7 @@
         </p>
         <p class="game-code__text">
           {{ t("They can also join using the url") }}
-          <a class="game-code__link" :href="domain + '/join/'"
+          <a class="game-code__link" :href="'https://' + domain + '/join/'"
             >{{ domain + '/join '}}</a
           >
           {{ t("and entering the room code.") }}
