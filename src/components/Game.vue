@@ -1,33 +1,45 @@
 <template>
+
   <div class="game" v-if="game.cards">
+
     <border :winner="winner" :turn="handleTurn" :player="player" />
+
     <qr-code
       :turn="handleTurn.allegiance"
       :room="room"
       @closeCodeModal="closeCodeModal"
       v-if="player.role === 'codebreaker' && showRoom === true"
     ></qr-code>
+
     <div v-else class="wrapper">
+
       <div class="game__header header">
+
         <score
           :redScore="redScore"
           :blueScore="blueScore"
           :firstPlayer="game.firstTurn"
         />
+
         <turn-indicator
           v-if="!winner"
           :player="player"
           :turn="handleTurn"
           :code="game.code"
         ></turn-indicator>
+
         <winner-indicator
           :winner="winner"
           :turn="handleTurn.allegiance"
           v-else
         ></winner-indicator>
+
       </div>
+
       <div class="game__main main">
+
         <div class="board" :class="[handleTurn.allegiance, { winner: winner }]">
+
           <card
             v-for="card in game.cards"
             :key="card.id"
@@ -46,8 +58,8 @@
                   handleTurn.role === 'codebreaker' &&
                   player.role === 'codebreaker' &&
                   selectedCards.length < game.code.count,
-                card_selected: card.isSelected
-              }
+                card_selected: card.isSelected,
+              },
             ]"
             :id="card.id"
             :allegiance="card.allegiance"
@@ -55,8 +67,11 @@
             :is-selected="card.isSelected"
             :visibility="card.visibility"
           >
+
           </card>
+
         </div>
+
         <codemaster-keyboard
           v-if="player.role === 'codemaster'"
           :disabled="handleTurn.role !== player.role"
@@ -66,7 +81,9 @@
           :count="game.code.count"
           :max="game.cards.length - reveledCards"
         />
+
       </div>
+
       <codemaster-buttons
         v-if="player.role === 'codemaster' && !winner"
         @countSelected="commitCode"
@@ -75,6 +92,7 @@
         :select="game.code.select"
         :word="game.code.word"
       />
+
       <codebreaker-buttons
         v-if="player.role === 'codebreaker' && !winner"
         :room="room"
@@ -84,11 +102,17 @@
         @showRoom="openCodeModal"
         @commitSelection="commitSelection"
       />
+
       <div class="game__restart footer" v-if="winner">
+
         <button class="button" @click="newGame()">{{ t("Restart") }}</button>
+
       </div>
+
     </div>
+
   </div>
+
 </template>
 
 <script>
@@ -101,8 +125,23 @@ import CodebreakerButtons from "./game/CodebreakerButtons.vue";
 import TurnIndicator from "./game/TurnIndicator.vue";
 import WinnerIndicator from "./game/WinnerIndicator.vue";
 import QrCode from "./game/QrCode.vue";
-import { database } from "../utils/utils";
 import { eventBus } from "../main";
+import {
+  getDatabase,
+  query,
+  orderByChild,
+  equalTo,
+  ref,
+  onValue,
+  onChildAdded,
+  onChildChanged,
+  update,
+  remove,
+} from "firebase/database";
+
+const db = getDatabase();
+const getRoomRef = (room) =>
+  query(ref(db, "games"), orderByChild("room"), equalTo(room));
 
 export default {
   components: {
@@ -114,7 +153,7 @@ export default {
     Score,
     QrCode,
     WinnerIndicator,
-    TurnIndicator
+    TurnIndicator,
   },
   data() {
     return {
@@ -124,36 +163,36 @@ export default {
       game: {},
       player: {
         role: this.$route.params.role,
-        allegiance: this.$route.params.allegiance
-      }
+        allegiance: this.$route.params.allegiance,
+      },
     };
   },
   computed: {
     reveledCards() {
       return this.game.cards.filter(
-        agentCard => agentCard.visibility === "visible"
+        (agentCard) => agentCard.visibility === "visible"
       ).length;
     },
     selectedCards() {
       return this.game.cards.filter(
-        agentCard => agentCard.isSelected && agentCard.visibility === "hidden"
+        (agentCard) => agentCard.isSelected && agentCard.visibility === "hidden"
       );
     },
     redScore() {
       return this.game.cards.filter(
-        agentCard =>
+        (agentCard) =>
           agentCard.allegiance === "red" && agentCard.visibility === "visible"
       ).length;
     },
     blueScore() {
       return this.game.cards.filter(
-        agentCard =>
+        (agentCard) =>
           agentCard.allegiance === "blue" && agentCard.visibility === "visible"
       ).length;
     },
     assassinShown() {
       return this.game.cards.filter(
-        agentCard =>
+        (agentCard) =>
           agentCard.allegiance === "assassin" &&
           agentCard.visibility === "visible"
       ).length;
@@ -182,12 +221,12 @@ export default {
     },
     handleTurn() {
       const first = this.game.firstTurn;
-      const second = firstToPlay => (firstToPlay === "red" ? "blue" : "red");
+      const second = (firstToPlay) => (firstToPlay === "red" ? "blue" : "red");
       const allegiance = this.game.turn % 4 < 2 ? first : second(first);
       const role = this.game.turn % 2 === 0 ? "codemaster" : "codebreaker";
       return {
         allegiance,
-        role
+        role,
       };
     },
     handleCodeMasterUI() {
@@ -203,7 +242,7 @@ export default {
         this.handleTurn.role === "codebreaker" &&
         this.player.role === "codebreaker"
       );
-    }
+    },
   },
   methods: {
     closeCodeModal() {
@@ -226,7 +265,7 @@ export default {
     },
     commitSelection() {
       const self = this;
-      const ids = this.selectedCards.map(item => item.id);
+      const ids = this.selectedCards.map((item) => item.id);
       for (let i = 0; i < ids.length; i++) {
         self.$set(self.game.cards[ids[i]], "visibility", "visible");
         self.$set(self.game.cards[ids[i]], "isSelected", false);
@@ -249,55 +288,47 @@ export default {
       this.game.turn++;
     },
     updateGameDB() {
-      const self = this;
-      const ref = database.ref("games");
-      ref
-        .orderByChild("room")
-        .equalTo(this.room)
-        .once("value", function(snapshot) {
-          snapshot.forEach(function(child) {
-            child.ref.update(self.game);
-          });
+      const roomRef = getRoomRef(this.room);
+      onValue(roomRef, (snapshot) => {
+        snapshot.forEach((child) => {
+          update(child.ref, self.game);
         });
+      });
     },
     newGame() {
-      const ref = database.ref("games");
-      ref
-        .orderByChild("room")
-        .equalTo(this.room)
-        .once("value")
-        .then(snapshot => {
-          database.ref("games/" + snapshot.node_.children_.root_.key).remove();
+      const roomRef = getRoomRef(this.room);
+      onValue(roomRef, (snapshot) => {
+        snapshot.forEach((child) => {
+          const childKey = child.key;
+          remove(ref(db, "games/" + childKey));
         });
+      });
+      const ref = getRoomRef(this.room);
       this.$router.push("/");
-    }
+    },
   },
   created() {
     const self = this;
-    const ref = database
-      .ref("games")
-      .orderByChild("room")
-      .equalTo(this.room);
-    ref.on("child_added", function(snapshot) {
-      self.game = snapshot.val();
+    const roomRef = getRoomRef(this.room);
+    onChildAdded(roomRef, (data) => {
+      self.game = data.val();
     });
-    ref.on("child_changed", function(snapshot) {
-      self.game = snapshot.val();
+    onChildChanged(roomRef, (data) => {
+      self.game = data.val();
     });
-    eventBus.$on("codeChanged", code => {
+    eventBus.$on("codeChanged", (code) => {
       this.game.code = code;
     });
   },
   beforeRouteEnter(to, from, next) {
-    database
-      .ref("games")
-      .orderByChild("room")
-      .equalTo(to.params.room)
-      .once("value", snapshot => {
-        if (!snapshot.exists()) {
-          next("/error/");
-        }
-      });
+    const roomRef = getRoomRef(to.params.room);
+    console.log(to.params.room);
+    onValue(roomRef, () => {
+      console.log(roomRef);
+      // if (!snapshot.val()) {
+      //   next("/error/");
+      // }
+    });
     if (to.params.role !== "codemaster" && to.params.role !== "codebreaker") {
       next("/error/");
     } else {
@@ -306,14 +337,15 @@ export default {
   },
   locales: {
     pt_br: {
-      Restart: "Recomeçar"
+      Restart: "Recomeçar",
     },
     fr: {
-      Restart: "Recommencer"
-    }
+      Restart: "Recommencer",
+    },
   },
   mounted() {
     this.$translate.setLang(localStorage.lang);
-  }
+  },
 };
 </script>
+

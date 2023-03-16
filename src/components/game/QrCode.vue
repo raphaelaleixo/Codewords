@@ -13,8 +13,8 @@
         </p>
         <p class="game-code__text">
           {{ t("They can also join using the url") }}
-          <a class="game-code__link" href="http://cdwrds.ludoratory.com/join"
-            >cdwrds.ludoratory.com/join</a
+          <a class="game-code__link" :href="domain + '/join/'"
+            >{{ domain + '/join '}}</a
           >
           {{ t("and entering the room code.") }}
         </p>
@@ -35,7 +35,7 @@
             background: '#f4f4f8',
             foreground: '#091619'
           }"
-          :value="'http://cdwrds.ludoratory.com/game/' + room + '/codemaster/'"
+          :value="domain + '/game/' + room + '/codemaster/'"
         >
         </qrcode>
       </div>
@@ -48,6 +48,9 @@ export default {
   props: {
     turn: String,
     room: String
+  },
+  computed: {
+    domain() { return window.location.host },
   },
   methods: {
     closeCode() {

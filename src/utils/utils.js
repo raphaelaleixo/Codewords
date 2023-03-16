@@ -1,3 +1,6 @@
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+
 export const getRandom = (arr, n) => {
   const result = new Array(n);
   let len = arr.length;
@@ -13,8 +16,6 @@ export const getRandom = (arr, n) => {
   return result;
 };
 
-var firebase = require("firebase/app");
-require("firebase/database");
 const config = {
   apiKey: "AIzaSyD-douwfS7KfdimlZneS3OyLQdn-PrdODo",
   authDomain: "codenames-b0fbb.firebaseapp.com",
@@ -23,6 +24,5 @@ const config = {
   storageBucket: "codenames-b0fbb.appspot.com",
   messagingSenderId: "95824193787"
 };
-firebase.initializeApp(config);
-
-export const database = firebase.database();
+const app = initializeApp(config);
+export const database = getDatabase(app);
