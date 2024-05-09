@@ -1,7 +1,5 @@
 <template>
-
   <div class="game" v-if="game.cards">
-
     <border :winner="winner" :turn="handleTurn" :player="player" />
 
     <qr-code
@@ -12,9 +10,7 @@
     ></qr-code>
 
     <div v-else class="wrapper">
-
       <div class="game__header header">
-
         <score
           :redScore="redScore"
           :blueScore="blueScore"
@@ -33,13 +29,10 @@
           :turn="handleTurn.allegiance"
           v-else
         ></winner-indicator>
-
       </div>
 
       <div class="game__main main">
-
         <div class="board" :class="[handleTurn.allegiance, { winner: winner }]">
-
           <card
             v-for="card in game.cards"
             :key="card.id"
@@ -67,9 +60,7 @@
             :is-selected="card.isSelected"
             :visibility="card.visibility"
           >
-
           </card>
-
         </div>
 
         <codemaster-keyboard
@@ -81,7 +72,6 @@
           :count="game.code.count"
           :max="game.cards.length - reveledCards"
         />
-
       </div>
 
       <codemaster-buttons
@@ -104,15 +94,10 @@
       />
 
       <div class="game__restart footer" v-if="winner">
-
         <button class="button" @click="newGame()">{{ t("Restart") }}</button>
-
       </div>
-
     </div>
-
   </div>
-
 </template>
 
 <script>
@@ -170,31 +155,32 @@ export default {
   computed: {
     reveledCards() {
       return this.game.cards.filter(
-        (agentCard) => agentCard.visibility === "visible"
+        (agentCard) => agentCard.visibility === "visible",
       ).length;
     },
     selectedCards() {
       return this.game.cards.filter(
-        (agentCard) => agentCard.isSelected && agentCard.visibility === "hidden"
+        (agentCard) =>
+          agentCard.isSelected && agentCard.visibility === "hidden",
       );
     },
     redScore() {
       return this.game.cards.filter(
         (agentCard) =>
-          agentCard.allegiance === "red" && agentCard.visibility === "visible"
+          agentCard.allegiance === "red" && agentCard.visibility === "visible",
       ).length;
     },
     blueScore() {
       return this.game.cards.filter(
         (agentCard) =>
-          agentCard.allegiance === "blue" && agentCard.visibility === "visible"
+          agentCard.allegiance === "blue" && agentCard.visibility === "visible",
       ).length;
     },
     assassinShown() {
       return this.game.cards.filter(
         (agentCard) =>
           agentCard.allegiance === "assassin" &&
-          agentCard.visibility === "visible"
+          agentCard.visibility === "visible",
       ).length;
     },
     winner() {
@@ -288,9 +274,11 @@ export default {
       this.game.turn++;
     },
     updateGameDB() {
+      const self = this;
       const roomRef = getRoomRef(this.room);
       onValue(roomRef, (snapshot) => {
         snapshot.forEach((child) => {
+          console.log(child, self.game);
           update(child.ref, self.game);
         });
       });
@@ -346,4 +334,3 @@ export default {
   },
 };
 </script>
-
