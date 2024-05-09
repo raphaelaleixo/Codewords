@@ -16,10 +16,10 @@ export const eventBus = new Vue();
 
 const router = new VueRouter({
   routes,
-  mode: "history"
+  mode: "history",
 });
 
 new Vue({
   router,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
